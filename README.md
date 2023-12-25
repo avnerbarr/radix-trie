@@ -1,3 +1,9 @@
+[![Latest Version]][crates.io]
+
+[crates.io]: https://crates.io/crates/ab-radix-trie
+[Latest Version]: https://img.shields.io/crates/v/ab.svg
+
+
 # Radix-Trie
 Radix-trie implementation i.e. compressed prefix-trie
 
