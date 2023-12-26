@@ -540,8 +540,6 @@ impl<V> Node<V> {
             if let Some(pos) = find_common_overlap_of_prefix_with_node(prefix, self.text.as_str()) {
                 if pos < self.text.len() {
                     collector.push(grapheme_slicer_until_end(self.text.as_str(), pos));
-                } else {
-                    collector.push(self.text.clone());
                 }
             } else {
                 collector.push(self.text.clone());

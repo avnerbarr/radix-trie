@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-use radix_trie::Trie;
+use ab_radix_trie::Trie;
 
 #[test]
 fn basic_tests() {
@@ -13,6 +13,7 @@ fn basic_tests() {
 
     let results = trie.get_suffixes_values("rom").unwrap();
     let entries = results.into_iter().map(|x| x.key).collect::<HashSet<_>>();
+    println!("entries => {:?}", entries);
     assert_eq!(entries.len(), 2);
     assert!(entries.contains("anus"));
     assert!(entries.contains("ulus"));
@@ -38,7 +39,7 @@ fn basic_tests() {
 
 #[test]
 fn test_fuzzy() {
-    use radix_trie::MatchingOptions;
+    use ab_radix_trie::MatchingOptions;
     let mut trie: Trie<String> = Trie::new();
     trie.insert("romanus", None);
     trie.insert("rom anus", None);
