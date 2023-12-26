@@ -20,7 +20,7 @@ jobs:
       - name: install cargo-v
         run: cargo install cargo-v
       - name: bump semver
-        run: cargo v -y
+        run: cargo v minor -y
       - name: push new version tag to repo
         run: git push origin master --tags
       - name: publish crate
