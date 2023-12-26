@@ -1,8 +1,8 @@
-use radix_trie::RadixTrie;
+use ab_radix_trie::Trie;
 use std::io::stdin;
-use radix_trie::MatchingOptions;
+use ab_radix_trie::MatchingOptions;
 fn main() {
-    let mut trie: RadixTrie<i32> = RadixTrie::new();
+    let mut trie: Trie<i32> = Trie::new();
     trie.insert("romanus", None);
     trie.insert("romulus", Some(10));
     trie.insert("rubens", None);

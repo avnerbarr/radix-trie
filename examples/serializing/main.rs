@@ -1,8 +1,8 @@
-use radix_trie::RadixTrie;
+use ab_radix_trie::Trie;
 use serde_json;
 use serde_json::json;
 fn main() {
-    let mut trie: RadixTrie<i32> = RadixTrie::new();
+    let mut trie: Trie<i32> = Trie::new();
     trie.insert("romanus", None);
     trie.insert("romulus", Some(10));
     trie.insert("rubens", None);
@@ -115,48 +115,6 @@ fn main() {
   "node_count": 11
 });
 
-    let trie : RadixTrie<i32> = serde_json::from_value(json).unwrap();
+    let trie : Trie<i32> = serde_json::from_value(json).unwrap();
     println!("{:?}", trie);
 }
-
-/*
-use radix_trie::{MatchingOptions, RadixTrie};
-use serde_json::Value;
-use std::io::stdin;
-use std::process::exit;
-
-fn main() {
-    println!("enter path to json file");
-    let mut input_string = String::new();
-    stdin()
-        .read_line(&mut input_string)
-        .ok()
-        .expect("Failed to read line");
-
-    let trimmed_input = input_string.trim();
-
-    let contents = std::fs::read_to_string(trimmed_input);
-    if contents.is_err() {
-        println!("can't read file at path {:?}", contents);
-        exit(1);
-    }
-    let res = serde_json::from_str::<RadixTrie<Value>>(contents.unwrap().as_str())
-        .expect("could not load tree");
-    println!("{:?}", res);
-
-    loop {
-        println!("enter search term:");
-        let mut input_string = String::new();
-        stdin()
-            .read_line(&mut input_string)
-            .expect("Failed to read line");
-
-        let results = res.get_suffixes_with_options(
-            input_string.trim_end(),
-            &MatchingOptions::ignoring_white_space_and_new_lines(),
-        );
-        println!("{:#?}", results);
-    }
-}
-
- */

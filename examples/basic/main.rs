@@ -1,5 +1,4 @@
-use serde::{Deserialize, Serialize};
-use radix_trie::Trie;
+use ab_radix_trie::Trie;
 
 fn main() {
     let mut trie: Trie<String> = Trie::new();

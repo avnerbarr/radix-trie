@@ -1,5 +1,5 @@
-use radix_trie::Trie;
-use radix_trie::MatchingOptions;
+use ab_radix_trie::Trie;
+use ab_radix_trie::MatchingOptions;
 fn main() {
     let mut trie: Trie<String> = Trie::new();
     trie.insert("romanus", None);
