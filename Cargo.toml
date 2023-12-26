@@ -1,12 +1,12 @@
 [package]
 name = "ab-radix-trie"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 license-file = "LICENSE"
 description = "A compressed radix trie implementation supporting matching rules"
 homepage = "https://github.com/avnerbarr/radix-trie"
 authors = ["Avner Barr <avner.barr@gmail.com>"]
-documentation = "https://github.com/avnerbarr/radix-trie"
+documentation = "https://docs.rs/ab-radix-trie/latest/ab_radix_trie/"
 repository = "https://github.com/avnerbarr/radix-trie"
 readme = "README.md"
 
