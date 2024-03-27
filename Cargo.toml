@@ -1,6 +1,6 @@
 [package]
 name = "ab-radix-trie"
-version = "0.1.1"
+version = "0.2.1"
 edition = "2021"
 license-file = "LICENSE"
 description = "A compressed radix trie implementation supporting matching rules"
