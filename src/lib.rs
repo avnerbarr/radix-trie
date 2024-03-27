@@ -25,6 +25,9 @@ impl<V> Trie<V> {
     }
     pub fn insert(&mut self, text: &str,
                   optional_associated_value: Option<V>) {
+        if text.is_empty() {
+            return
+        }
         let c = text.chars().next().unwrap();
         if let Some(child) = self.children.get_mut(&c) {
             child.insert(text, optional_associated_value, &self.node_count, &self.char_count) ;
@@ -52,6 +55,9 @@ impl<V> Trie<V> {
     }
     /// returns the suffix tree root for a given prefix
     pub fn suffix_tree(&self, prefix: &str) -> Option<&Node<V>> {
+        if prefix.is_empty() {
+            return None
+        }
         let first = prefix.chars().next().unwrap();
         if let Some(child) = self.children.get(&first) {
             return child.suffix_root(prefix)
@@ -816,4 +822,30 @@ fn test_squashing() {
 
     println!("{:?}", nt1);
     println!("{:?}", nt2);
+}
+
+#[test]
+fn test_empty() {
+    let mut trie: Trie<String> = Trie::new();
+    trie.insert("", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
+    trie.insert("romanus", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
+    trie.insert("romulus", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
+    trie.insert("rubens", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
+    trie.insert("ruber", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
+    trie.insert("rubicon", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
+    trie.insert("rubicundus", None);
+    let results = trie.get_suffixes_values("");
+    assert!(results.is_none());
 }
