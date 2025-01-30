@@ -15,6 +15,16 @@ pub struct Trie<V> {
     char_count: std::sync::atomic::AtomicU32,
 }
 
+impl <V:Clone> Clone for Trie<V> {
+    fn clone(&self) -> Self {
+        let x = self.node_count.load(Relaxed);
+        Self { children: self.children.clone(),
+            node_count: std::sync::atomic::AtomicU32::new(x),
+            char_count: std::sync::atomic::AtomicU32::new(self.char_count.load(Relaxed)) }
+    }
+}
+    
+
 impl<V> Trie<V> {
     pub fn new() -> Trie<V> {
         Trie {
@@ -111,6 +121,21 @@ pub struct Node<V> {
     node_id: Option<u8>, // TODO: u8 might not be enough ? consider bigger
     #[serde(default)]
     weight: usize,
+}
+
+impl <V:Clone> Clone for Node<V> {
+    fn clone(&self) -> Self {
+        Node {
+            text: self.text.clone(),
+            terminal: self.terminal,
+            children: self.children.clone(),
+            value: self.value.clone(),
+            visit_count: std::sync::atomic::AtomicU64::new(self.visit_count.load(Relaxed)),
+            #[cfg(feature = "tracing")]
+            node_id: self.node_id.clone(),
+            weight: self.weight
+        }
+    }
 }
 
 #[cfg(feature = "tracing")]
