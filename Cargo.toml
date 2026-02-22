@@ -2,7 +2,7 @@
 name = "ab-radix-trie"
 version = "0.2.1"
 edition = "2021"
-license-file = "LICENSE"
+license = "MIT"
 description = "A compressed radix trie implementation supporting matching rules"
 homepage = "https://github.com/avnerbarr/radix-trie"
 authors = ["Avner Barr <avner.barr@gmail.com>"]
